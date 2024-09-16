@@ -1,9 +1,11 @@
+#include "Context.h"
 #include <Metal/Metal.hpp>
+#include <CoreFoundation/CoreFoundation.h>
 #include <Texture.h>
+#include <simd/simd.h>
 #include <stb_image.h>
 #include <Util.h>
 #include <utility>
-Texture::Texture() {}
 
 void* load_image_data(const char* path, uint32_t* width, uint32_t* height) {
     int channels = 0;

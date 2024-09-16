@@ -64,13 +64,14 @@ void Renderer::begin_frame() {
 void Renderer::render_model(const std::shared_ptr<Model> &model) {
     for(auto& mesh: model->meshes()) {
             PerMeshUBO model_ubo = {
-                .transform = mesh.transform.matrix()
+                .transform = mesh.transform.matrix(),
             };
         render_cmd.set_vertex_bytes(&model_ubo, sizeof(model_ubo), 1);
 
         render_cmd.set_vertex_buffer(mesh.positions, 0, 2);
         render_cmd.set_vertex_buffer(mesh.normals, 0, 3);
         render_cmd.set_vertex_buffer(mesh.uvs, 0, 4);
+        
         render_cmd.draw_primitive_indexed(MTL::PrimitiveTypeTriangle, mesh.indices, MTL::IndexTypeUInt32, mesh.indices->len() / sizeof(uint32_t), 0);
     }
 }

@@ -19,7 +19,7 @@ void RenderCommands::end() {
 }
 void RenderCommands::set_pipeline() {
     if(is_pipeline_dirty) {
-        assert(rp_desc.n_attachments);
+        assert(!rp_desc.attachments.is_empty());
         auto pso = pipeline_registry->render_pipeline(shader, pipe_state, rp_desc);
         cmd_encoder->setRenderPipelineState(pso);
         is_pipeline_dirty = false;
