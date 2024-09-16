@@ -3,12 +3,14 @@
 #include <QuartzCore/QuartzCore.hpp>
 #include <imgui_support.h>
 #include <simd/vector.h>
+#include <Material.h>
 
 struct GlobalUBOData {
     simd::float3 color;
 };
 struct PerMeshUBO {
     simd::float4x4 transform;
+    ShaderMaterial material;
 };
 
 Renderer::Renderer(MTL::Device* device): cmd_buf(device) {
